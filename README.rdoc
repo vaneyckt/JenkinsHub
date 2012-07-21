@@ -1,0 +1,58 @@
+== Introduction
+
+JenkinsHub is a Sinatra app that makes it possible for Jenkins to run tests on open pull requests on GitHub. JenkinsHub itself acts as a mediator between Jenkins and GitHub. It talks to GitHub to get an open pull request, creates a testing branch and then instructs Jenkins to run tests on this particular branch. After Jenkins has finished testing this branch, it collects the results, displays them on a web page (see image below) and comments on the pull request.
+
+http://i.imgur.com/fjHNz.png
+
+==== Features
+- JenkinsHub tests the merged version of a pull request rather than just the feature branch. It takes into account all changes made upstream after a feature branch was created.
+
+- JenkinsHub automatically re-runs tests whenever new commits are added to either the pull request itself or the branch that the pull request needs to be merged into.
+
+- JenkinsHub comments on each tested pull request. A comment contains the test result and a link to the relevant Jenkins job. Comments are only made when the test results of a pull request change, so as to avoid spamming the comments section.
+
+- JenkinsHub provides you with a web page that gives you a complete overview of the tests results of all pull requests and allows you to easily force a re-testing of any given pull request.
+
+== Getting Started
+
+There are 5 small steps involved in getting JenkinsHub up and running. These steps assume you have a recent version of Ruby installed and have sufficient access to your Jenkins CI so as to add builds.
+
+=== Installing the software
+
+JenkinsHub requires several Ruby gems to be installed. You can install all of these in one go by running:
+
+    gem install jenkinshub
+
+JenkinsHub also makes use of the curl library to communicate with your Jenkins CI. You can install curl by running:
+
+    sudo apt-get install curl
+
+=== Modifying your Jenkins CI
+
+You will need to setup a parameterized Jenkins build for testing pull requests. JenkinsHub will instruct Jenkins to use this build for running tests on an open pull request. You can tell JenkinsHub about this build by modifying its configuration file. We will look at this configuration file in a later step, but for now let's focus on setting up the parameterized build.
+
+On the Configure build screen of your job, you'll want to check the 'This build is parameterized' checkbox and add a 'branch', 'repository', and 'id' parameter. The order of the parameters is important. It should look like this:
+
+http://imgur.com/5Q3iA.png
+
+Further down on the Configure build screen you can specify your Source Code Management settings. Make sure that your branch specifier is set to '$branch' and that your repository url is set to '$repository'. It should look like this:
+
+http://imgur.com/2a2A5.png
+
+=== Downloading JenkinsHub
+
+You'll need to clone the JenkinsHub repository to your hard drive in order to get started. You can do this by running:
+
+    git clone git@github.com:vaneyckt/JenkinsHub.git
+
+=== Modifying the configuration file
+
+A configuration file can be found in the /config directory. There are a few configuration details that you will need to specify before running JenkinsHub. The comments in the file should hopefully make it easy to get everything set up right.
+
+=== Running JenkinsHub
+
+Navigate into the JenkinsHub folder and run:
+
+    rackup -p 4567
+
+This will cause JenkinsHub to start running on localhost:4567. If this is your first run, JenkinsHub will start by cloning the specified repository into the /repositories directory, and will also create a .yaml file in the /db directory to help keep track of pull requests.

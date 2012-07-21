@@ -1,0 +1,32 @@
+<% data = {} %>
+<% if File.exists?("#{settings.root}/db/pull_requests.yaml") %>
+<%   data = YAML.load(File.read("#{settings.root}/db/pull_requests.yaml")) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th> Title </th>
+      <th> User </th>
+      <th> Status </th>
+      <th> Last Checked </th>
+      <th> Link </th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% data.each do |key, value| %>
+    <% row_class = 'failed' %>
+    <% row_class = 'passed' if value[:status] == 'passed' %>
+    <% row_class = 'busy'   if value[:status] == 'busy' %>
+    <tr class= <%= row_class %> >
+      <td> <%= value[:title] %> </td>
+      <td> <%= value[:user_name] %> </td>
+      <td> <%= value[:status] %> </td>
+      <td> <%= Time.at(value[:last_checked]) %> </td>
+      <td> <%= "<a href=#{value[:url]} target='_blank'>click</a>" %> </td>
+      <td> <%= link_to('reschedule', "/delete?id=#{key}") %> </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

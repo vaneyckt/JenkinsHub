@@ -1,0 +1,68 @@
+table
+{
+  border-collapse: collapse;
+}
+
+th
+{
+  color: #FFFFFF;
+  font-size: 12px;
+  text-align: left;
+  background-color: #A8CC46;
+  font-family: Calibri, Candara, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+
+  border-style: solid;
+  border-left-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  border-bottom-color: #EAE8E3;
+  border-width: 1px 1px 1px 1px;
+  padding: 4px 4px 2px 4px;
+}
+
+tr.passed td
+{
+  color: #000000;
+  font-size: 12px;
+  text-align: left;
+  background-color: #E3EEC4;
+  font-family: Verdana, Geneva, sans-serif;
+
+  border-style: solid;
+  border-left-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  border-bottom-color: #EAE8E3;
+  border-width: 1px 1px 1px 1px;
+  padding: 4px 4px 2px 4px;
+}
+
+tr.busy td
+{
+  color: #000000;
+  font-size: 12px;
+  text-align: left;
+  background-color: #FAD5A0;
+  font-family: Verdana, Geneva, sans-serif;
+
+  border-style: solid;
+  border-left-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  border-bottom-color: #EAE8E3;
+  border-width: 1px 1px 1px 1px;
+  padding: 4px 4px 2px 4px;
+}
+
+tr.failed td
+{
+  color: #000000;
+  font-size: 12px;
+  text-align: left;
+  background-color: #F5CACD;
+  font-family: Verdana, Geneva, sans-serif;
+
+  border-style: solid;
+  border-left-color: #FFFFFF;
+  border-right-color: #FFFFFF;
+  border-bottom-color: #EAE8E3;
+  border-width: 1px 1px 1px 1px;
+  padding: 4px 4px 2px 4px;
+}
