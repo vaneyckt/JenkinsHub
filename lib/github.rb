@@ -22,7 +22,8 @@ module Github
       client = Octokit::Client.new(:login => config[:github_login], :password => config[:github_password])
       repository_id = get_repository_id(config)
       info_json = client.pull_request(repository_id, pull_request_id)
-      raise 'bad info_json' if (info_json.mergeable.to_s != 'true' and info_json.mergeable.to_s != 'false')
+      raise 'bad info_json' if ![true, false].include?(info_json.merged)
+      raise 'bad info_json' if info_json.merged == false and ![true, false].include?(info_json.mergeable)
       return info_json
     rescue
       sleep 5

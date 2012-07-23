@@ -110,6 +110,7 @@ def parse_pull_request_from_info_json(root_path, info_json, pull_request_id)
   pull_request[:url] = info_json.html_url
   pull_request[:title] = info_json.title
   pull_request[:user_name] = info_json.user.login
+  pull_request[:merged] = info_json.merged
   pull_request[:mergeable] = info_json.mergeable
   pull_request[:head_sha] = info_json.head.sha
   pull_request[:head_branch] = info_json.head.ref

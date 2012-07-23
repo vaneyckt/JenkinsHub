@@ -38,7 +38,10 @@ while(true)
       info_json = Github.get_pull_request_info(pull_request_id, config)
       pull_request = parse_pull_request_from_info_json(opts[:root_path], info_json, pull_request_id)
 
-      if !pull_request[:mergeable]
+      if pull_request[:merged]
+        # remove pull request from the db
+        delete_id_pull_requests_data_file(opts[:root_path], pull_request_id)
+      elsif !pull_request[:mergeable]
         # update pull request status
         pull_request[:status] = 'not mergeable'
         update_data_pull_requests_data_file(opts[:root_path], pull_request)
