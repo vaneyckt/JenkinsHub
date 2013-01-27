@@ -1,3 +1,7 @@
+== Important
+
+This software is no longer being maintained. If you are interested in the functionality provided by JenkinsHub, please have a look at {Jently}[https://github.com/vaneyckt/Jently].
+
 == Introduction
 
 JenkinsHub is a Sinatra app that makes it possible for Jenkins to run tests on open pull requests on GitHub. JenkinsHub itself acts as a mediator between Jenkins and GitHub. It talks to GitHub to get an open pull request, creates a testing branch and then instructs Jenkins to run tests on this particular branch. After Jenkins has finished testing this branch, it collects the results, displays them on a web page (see image below) and comments on the pull request.
