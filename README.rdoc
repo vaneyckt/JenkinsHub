@@ -1,6 +1,6 @@
 == Important
 
-This software is no longer being maintained. If you are interested in the functionality provided by JenkinsHub, please have a look at {Jently}[https://github.com/vaneyckt/Jently].
+This software is no longer being maintained. If you are interested in the functionality provided by JenkinsHub, please have a look at {Jently}[https://github.com/vaneyckt/Jently] instead.
 
 == Introduction
 
